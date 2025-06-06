@@ -8,20 +8,22 @@ form.addEventListener("submit", async (event) => {
         .map(input => input.value.trim())
         .filter(name => name !== ""); // Filtra valores vazios
 
-    const historia = form.querySelector('textarea[name="historia"]').value.trim();
+    const message = form.querySelector('textarea[name="historia"]').value.trim();
 
-    const dados = { names, historia };
+    const dados = { names, message };
     console.log(dados);
 
     // Converte os dados para JSON
     try {
-        const resposta = await fetch('https://fsdt-contact.onrender.com/contact', {
-            method: 'POST',
+        const resposta = await fetch("https://fsdt-contact.onrender.com/contact", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(dados)
+            body: JSON.stringify(dados),
         });
+
+
         if (resposta.ok) {
             alert("Dados enviados com sucesso!");
             form.reset();
